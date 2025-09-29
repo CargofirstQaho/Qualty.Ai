@@ -46,7 +46,6 @@ const BidCard = ({ bid }) => {
         toast.success(data.message)
       }
     } catch (err) {
-      console.error("Bid error:", err);
     }
   };
 
@@ -96,5 +95,6 @@ const BidCard = ({ bid }) => {
     </div>
   );
 };
+
 
 export default BidCard;

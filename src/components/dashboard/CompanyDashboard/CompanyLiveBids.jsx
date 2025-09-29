@@ -5,7 +5,7 @@ const CompanyLiveBids = () => {
   const [bidAmount, setBidAmount] = useState("");
 
   const handleBid = () => {
-    console.log("Bid submitted:", bidAmount);
+    ("Bid submitted:", bidAmount);
     // Add your bid submission logic here
   };
 

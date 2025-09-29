@@ -2,23 +2,22 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
 import { useDispatch } from "react-redux";
-import { addEnquiries } from "../redux/slice//enquirySlice";
+import { addCustomerEnquiries } from "../redux/slice/customerEnquirySlice";
 
-const useFetchEnquiries = () => {
+const useFetchCustomerEnquiry = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
     const loadEnquiries = async () => {
       try {
-        const response = await fetch(`${BASE_URL}/inspector/enquiries`, {
+        const response = await fetch(`${BASE_URL}/customer/my-enquiries`, {
           method: "GET",
           credentials: "include",
         });
         const data = await response.json();
-        if (data.enquiries) {
-          
-          dispatch(addEnquiries(data.enquiries));
+        if (data.enquiries) {         
+          dispatch(addCustomerEnquiries(data.enquiries));
         } else {
           navigate("/login");
         }
@@ -30,4 +29,4 @@ const useFetchEnquiries = () => {
   }, []);
 };
 
-export default useFetchEnquiries;
+export default useFetchCustomerEnquiry;

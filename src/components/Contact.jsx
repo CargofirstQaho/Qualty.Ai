@@ -61,7 +61,6 @@ const Contact = () => {
 
       return { success: true };
     } catch (error) {
-      console.error('Email sending failed:', error);
       return { success: false, error: error.text };
     }
   };
@@ -87,7 +86,6 @@ const Contact = () => {
       if (emailResult.success) {
         await push(ref(database, `contact_submissions/${firebaseResult.key}/emailSent`), true);
       } else {
-        console.warn('Email notification failed, but form was saved');
       }
 
       setFormData({
@@ -105,7 +103,6 @@ const Contact = () => {
       setTimeout(() => setIsSubmitted(false), 5000);
 
     } catch (error) {
-      console.error('Error submitting form:', error);
       setSubmitError('Failed to submit form. Please try again.');
     } finally {
       setIsLoading(false);

@@ -2,7 +2,6 @@ import React from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-
 import LandingPage from "../src/components/LandingPage"
 import Login from "../src/components/auth/Login";
 import Signup from "../src/components/auth/Signup";
@@ -31,6 +30,7 @@ import InspectorLiveChat from "./components/dashboard/InspectorDashboard/Inspect
 import InspectorMyAccount from "./components/dashboard/InspectorDashboard/InspectorMyAccount";
 import InspectorMyHistory from "./components/dashboard/InspectorDashboard/InspectorMyHistory";
 import InspectorPayment from "./components/dashboard/InspectorDashboard/InspectorPayment";
+import InspectionDetailsPage from "./components/dashboard/CustomerDashboard/InspectionDetailsPage";
 import CompanyLayout from './components/dashboard/CompanyDashboard/CompanyLayout'
 import CompanyDashboard from './components/dashboard/CompanyDashboard/CompanyDashboard'
 import CompanyBidRoom from './components/dashboard/CompanyDashboard/CompanyBidRoom'
@@ -66,6 +66,7 @@ function App() {
           <Route path="history" element={<MyHistory />} />
           <Route path="payments" element={<Payments />} />
           <Route path="enquiry" element={<RaiseEnquiry />} />
+          <Route path="inspection/:id" element={<InspectionDetailsPage />} />
         </Route>
 
         <Route path="/inspector" element={ <InspectorLayout/> }>

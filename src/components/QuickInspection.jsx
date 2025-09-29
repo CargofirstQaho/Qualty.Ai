@@ -82,7 +82,7 @@ export default function QuickInspection() {
 
   useFetchLocation()
   const { location } = useUser()
-  console.log(" location from context", location);
+  (" location from context", location);
 
 
   const [selectedCity, setSelectedCity] = useState(null);
@@ -120,7 +120,7 @@ export default function QuickInspection() {
 
   // const handleFormSubmit = (e) => {
   //   e.preventDefault();
-  //   console.log('Form submitted:', formData);
+  //   ('Form submitted:', formData);
   //   // Add your submission logic here
   //   setShowForm(false);
   //   // Reset form

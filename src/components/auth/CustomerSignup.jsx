@@ -116,7 +116,7 @@ const CustomerSignup = () => {
 
      catch (error) {
       setError(error.message || "Something went wrong");
-      console.error("Customer signup error:", error.message);
+      ("Customer signup error:", error.message);
     }
   };
 

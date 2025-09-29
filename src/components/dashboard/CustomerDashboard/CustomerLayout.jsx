@@ -46,7 +46,7 @@ const user = useSelector((state)=>state?.user?.user)
               });
               const data = await response.json()        
       } catch (error) {
-        console.error("Error during logout:", error);       
+        ("Error during logout:", error);       
       }
       navigate("/");
      }

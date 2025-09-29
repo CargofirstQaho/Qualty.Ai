@@ -48,7 +48,7 @@ const MyAccount = () => {
       }
       
     } catch (error) {
-      console.error("Upload error:", error);
+      ("Upload error:", error);
     } finally {
       setUploading(false);
     }

@@ -44,7 +44,7 @@ const CompanyLayout = () => {
               });
               const data = await response.json()        
       } catch (error) {
-        console.error("Error during logout:", error);       
+        ("Error during logout:", error);       
       }
       navigate("/");
      }

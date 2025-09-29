@@ -23,7 +23,7 @@ const useFetchUser = () => {
           navigate("/login");
         }
       } catch (error) {
-        console.error("Error fetching user:", error);
+        ("Error fetching user:", error);
         navigate("/login");
       }
     };

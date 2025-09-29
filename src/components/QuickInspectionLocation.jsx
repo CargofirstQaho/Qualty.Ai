@@ -13,7 +13,7 @@ const QuickInspectionLocation = () => {
     : [];
 
   const handleConfirm = (city) => {
-    console.log(`Confirmed: ${city.location} - ₹${city.price}`);
+    (`Confirmed: ${city.location} - ₹${city.price}`);
     // Add navigation or API logic here if needed
   };
 

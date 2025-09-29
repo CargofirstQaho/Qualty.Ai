@@ -40,7 +40,6 @@ const InspectorBidRoom = () => {
         toast.error(data.message);
       }
     } catch (err) {
-      console.error("Bid error:", err);
       toast.error("Error placing bid");
     }
   };

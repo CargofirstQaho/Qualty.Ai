@@ -57,7 +57,7 @@ const QuickInspectionForm = ({ closeForm, onSubmit }) => {
         // navigate('/login');
       }
     } catch (error) {
-      console.error("Error submitting form:", error);
+      ("Error submitting form:", error);
       setError(
         "An error occurred while submitting the form. Please try again."
       );

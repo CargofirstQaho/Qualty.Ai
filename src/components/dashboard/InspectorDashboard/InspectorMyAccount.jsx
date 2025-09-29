@@ -36,7 +36,6 @@ export default function InspectorMyAccount() {
         toast.error(result.message || "Upload failed");
       }
     } catch (error) {
-      console.error("Upload failed:", error);
       toast.error("Something went wrong");
     }
   };
@@ -74,7 +73,6 @@ export default function InspectorMyAccount() {
         toast.error(result.message || "Update failed");
       }
     } catch (error) {
-      console.error("Billing update failed:", error);
       toast.error("Something went wrong");
     }
   };
@@ -98,7 +96,7 @@ export default function InspectorMyAccount() {
           <p className="text-gray-400">Manage your profile information</p>
         </div>
 
-        {/* Main Card */}
+
         <div className="bg-gray-900/90 backdrop-blur-xl rounded-2xl p-8 shadow-2xl border border-gray-700/50">
           {/* Profile Photo */}
           <div className="flex items-center gap-4 mb-8 p-4 rounded-xl bg-gray-800/60">
@@ -147,7 +145,6 @@ export default function InspectorMyAccount() {
             )}
           </div>
 
-          {/* Billing Details Display */}
           <div className="bg-gray-800/50 rounded-xl p-6 mb-8">
             <h3 className="flex items-center gap-2 text-lg font-semibold text-white mb-4">
               <CreditCard size={20} className="text-gray-400" />

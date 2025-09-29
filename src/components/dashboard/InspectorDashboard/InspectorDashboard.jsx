@@ -20,7 +20,7 @@ const InspectorDashboard = () => {
         setEnquiryData(data.enquiries)
         dispatch(addEnquiries(data.enquiries))
       } catch (err) {
-        console.error(err);
+        (err);
       }
     };
     loadEnquiries();

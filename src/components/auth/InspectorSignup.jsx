@@ -165,7 +165,7 @@ export default function InspectorSignup() {
         navigate("/login");
       }
     } catch (err) {
-      console.error("Signup error:", err);
+      ("Signup error:", err);
       setError("Something went wrong. Please try again.");
     }
   };
