@@ -276,7 +276,7 @@ const RaiseEnquiry = () => {
         navigate("/customer/bidding")
       }
     } catch (error) {
-      ("Error submitting enquiry:", error);
+      console.error("Error submitting enquiry:", error);
     }
   };
 
