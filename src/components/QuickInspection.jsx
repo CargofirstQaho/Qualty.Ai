@@ -17,8 +17,6 @@ import Vietnam from "../assets/Vietnam.jpg";
 import useFetchLocation from '../hooks/useFetchLocation';
 import { useUser } from '../context/userContext';
 import { Link } from 'react-router-dom'
-import LocationDetails from './LocationDetail';
-
 
 
 
