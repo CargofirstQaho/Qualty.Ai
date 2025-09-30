@@ -5,7 +5,7 @@ import Karnataka from "../assets/Karnataka.webp";
 import Maharashtra from "../assets/Maharashtra.jpg";
 import AP from "../assets/AP.webp";
 import Telangana from "../assets/Telangana.jpg";
-import TamilNadu from "../assets/Tamilnadu.jpg";
+import TamilNadu from "../assets/TamilNadu.jpg";
 import Chhattisgarh from "../assets/Chhattisgarh.jpg";
 import UP from "../assets/UP.jpg";
 import MP from "../assets/MP.webp";
@@ -17,7 +17,6 @@ import Vietnam from "../assets/Vietnam.jpg";
 import useFetchLocation from '../hooks/useFetchLocation';
 import { useUser } from '../context/userContext';
 import { Link } from 'react-router-dom'
-
 
 
 export default function QuickInspection() {
