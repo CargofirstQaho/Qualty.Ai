@@ -20,62 +20,6 @@ import { Link } from 'react-router-dom'
 import LocationDetails from './LocationDetail';
 
 
-// const localLocations = [
-//   { name: 'Kolkata', locations: [
-//     { rate: 800, imageUrl: Kolkata },
-//   ]},
-//   { name: 'Gujarat', locations: [
-//     { location: 'Kandla', rate: 1000, imageUrl: Gujarat },
-//     { location: 'Gandidham', rate: 1200},
-//     { location: 'Tarapur', rate: 1200 },
-//     { location: 'Moraj', rate: 1100 },
-//     { location: 'Sonagarh', rate: 1200 },
-//     { location: 'Azira Port', rate: 1200},
-//     { location: 'Mundra', rate: 1200 },
-//   ]},
-//   { name: 'Karnataka', locations: [
-//     { location: 'Mandya', rate: 1300, imageUrl: Karnataka },
-//     { location: 'Tumakur', rate: 1300 },
-//     { location: 'Raichur', rate: 1300 },
-//     { location: 'Bangarpet', rate: 1300 },
-
-//   ]},
-//   { name: 'Maharashtra', locations: [
-//     { location: 'Nagpur', rate: 900, imageUrl:Maharashtra},
-//     { location: 'Mumbai', rate: 1000 },
-//     { location: 'Gondiya', rate: 1000},
-//     { location: 'Latur', rate: 1200 },
-//     { location: 'Sangli', rate: 1200 },
-//   ]},
-//   { name: 'Andhra Pradesh ', locations: [
-//     { location: 'Kadapa', rate: 1300, imageUrl: AP },
-//     { location: 'Mandapeta', rate: 1300},
-//     { location: 'Nellore', rate: 1300},
-//   ]},
-//   { name: 'Telangana', locations: [
-//     { location: 'Hyderabad', rate: 1300, imageUrl: Telangana },
-//   ]},
-//   { name: 'Tamil Nadu', locations: [
-//     { location: 'Chennai', rate: 1200, imageUrl: TamilNadu },
-//   ]},
-//   { name: 'Chhattisgarh', locations: [
-//     { rate: 800, imageUrl: Chhattisgarh },
-//   ]},
-//   { name: 'Uttar Pradesh', locations: [
-//     { rate: 1200, imageUrl: UP },
-//   ]},
-//   { name: 'Madhya Pradesh', locations: [
-//     {  rate: 1200, imageUrl:MP },
-//   ]},
-// ];
-
-// const internationalLocations = [
-//   { country: 'China', rate: 300, imageUrl: China },
-//   { country: 'Dubai', rate: 407, imageUrl: Dubai },
-//   { country: 'Qatar', rate: 407, imageUrl: Qatar },
-//   { country: 'USA', rate: 1000, imageUrl: USA },
-//   { country: 'Vietnam', rate: 300, imageUrl: Vietnam },
-// ];
 
 
 export default function QuickInspection() {
@@ -101,45 +45,6 @@ export default function QuickInspection() {
     contact: '',
     volume: '',
   });
-
-  // const visibleDomesticLocations = showMoreDomestic ? localLocations : localLocations.slice(0, 5);
-  // const visibleGlobalLocations = showMoreGlobal ? internationalLocations : internationalLocations.slice(0, 5);
-
-
-
-  // const handleConfirmClick = (locationInfo) => {
-  //   setSelectedLocation(locationInfo);
-  //   setFormData(prev => ({ ...prev, location: locationInfo.location || locationInfo.country }));
-  //   setShowForm(true);
-  // };
-
-  // const handleFormChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setFormData(prev => ({ ...prev, [name]: value }));
-  // };
-
-  // const handleFormSubmit = (e) => {
-  //   e.preventDefault();
-  //   ('Form submitted:', formData);
-  //   // Add your submission logic here
-  //   setShowForm(false);
-  //   // Reset form
-  //   setFormData({
-  //     location: '',
-  //     category: '',
-  //     description: '',
-  //     date: '',
-  //     type: '',
-  //     service: '',
-  //     contact: '',
-  //     volume: '',
-  //   });
-  // };
-
-  // const closeForm = () => {
-  //   setShowForm(false);
-  // };
-
 
   const regionImages = {
     "Kolkata": Kolkata,
