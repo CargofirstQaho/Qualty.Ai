@@ -40,6 +40,7 @@ import CompanyLiveChat from './components/dashboard/CompanyDashboard/CompanyLive
 import CompanyAccount from './components/dashboard/CompanyDashboard/CompanyAccount'
 import CompanyHistory from './components/dashboard/CompanyDashboard/CompanyHistory'
 import CompanyPayment from './components/dashboard/CompanyDashboard/CompanyPayment'
+import CustomerEnquiryDetailPage from "./components/dashboard/CustomerDashboard/CustomerEnquiryDetailPage";
 
 
 function App() {
@@ -67,6 +68,7 @@ function App() {
           <Route path="payments" element={<Payments />} />
           <Route path="enquiry" element={<RaiseEnquiry />} />
           <Route path="inspection/:id" element={<InspectionDetailsPage />} />
+          <Route path="enquiry/:id" element={<CustomerEnquiryDetailPage />} />
         </Route>
 
         <Route path="/inspector" element={ <InspectorLayout/> }>
@@ -94,7 +96,7 @@ function App() {
         <Route path="/quickInspection" element={ <QuickInspection />} />
         <Route path="/quickInspection/:regionName" element={ <LocationDetail />} />
         <Route path="/quickInspection/form" element={ <QuickInspectionForm />} />
-       
+        
       </Routes>
     </Router>
   );

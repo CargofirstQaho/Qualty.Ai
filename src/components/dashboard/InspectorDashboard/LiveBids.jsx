@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import BidCards from "./BidCards";
+import BidCard from "./BidCards";
 
 const LiveBids = () => {
   const raisedEnquiries = useSelector((state) => state.enquiry.raisedEnquiry);
   const navigate = useNavigate();
+  const [placedBids, setPlacedBids] = useState({}); 
 
   const limitedEnquiries = raisedEnquiries?.slice(0, 2) || [];
+
+  const handleBidPlaced = (id) => {
+    setPlacedBids((prev) => ({ ...prev, [id]: true }));
+  };
 
   return (
     <section className="bg-gray-900 text-white p-6 rounded-xl shadow-lg max-w-4xl mx-auto">
@@ -20,7 +25,14 @@ const LiveBids = () => {
         {limitedEnquiries.length === 0 ? (
           <p className="text-gray-400">No live enquiries available</p>
         ) : (
-          limitedEnquiries.map((bid) => <BidCards key={bid._id} bid={bid} />)
+          limitedEnquiries.map((bid) => (
+            <BidCard
+              key={bid._id}
+              bid={bid}
+              bidPlaced={placedBids[bid._id]}
+              onBidPlaced={() => handleBidPlaced(bid._id)}
+            />
+          ))
         )}
       </section>
 

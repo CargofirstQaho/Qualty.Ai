@@ -17,10 +17,7 @@ const QuickInspectionForm = ({ closeForm, onSubmit }) => {
   });
   const [error, setError] = useState("");
 
-  const navigate = useNavigate();
-
   useFetchUser();
-  const { user } = useUser();
 
   const handleFormChange = (e) => {
     const { name, value } = e.target;
@@ -54,10 +51,9 @@ const QuickInspectionForm = ({ closeForm, onSubmit }) => {
 
       if (!data.success) {
         setError(data.errors?.[0]?.msg || data.message);
-        // navigate('/login');
       }
     } catch (error) {
-      ("Error submitting form:", error);
+      console.error("Error submitting form:", error);
       setError(
         "An error occurred while submitting the form. Please try again."
       );
@@ -74,7 +70,6 @@ const QuickInspectionForm = ({ closeForm, onSubmit }) => {
           Inspection Request
         </h2>
 
-        {/* Location */}
         <div>
           <label className="block mb-1 text-sm font-medium text-gray-300">
             Location
@@ -90,7 +85,6 @@ const QuickInspectionForm = ({ closeForm, onSubmit }) => {
           />
         </div>
 
-        {/* Commodity Category */}
         <div>
           <label className="block mb-1 text-sm font-medium text-gray-300">
             Commodity Category
@@ -111,7 +105,6 @@ const QuickInspectionForm = ({ closeForm, onSubmit }) => {
           </select>
         </div>
 
-        {/* Description */}
         <div>
           <label className="block mb-1 text-sm font-medium text-gray-300">
             Description
@@ -126,7 +119,6 @@ const QuickInspectionForm = ({ closeForm, onSubmit }) => {
           />
         </div>
 
-        {/* Volume */}
         <div>
           <label className="block mb-1 text-sm font-medium text-gray-300">
             Volume
@@ -140,7 +132,6 @@ const QuickInspectionForm = ({ closeForm, onSubmit }) => {
           />
         </div>
 
-        {/* Inspection Date */}
         <div>
           <label className="block mb-1 text-sm font-medium text-gray-300">
             Inspection Date
@@ -179,8 +170,6 @@ const QuickInspectionForm = ({ closeForm, onSubmit }) => {
             ))}
           </div>
         </div>
-
-        {/* Inspection Service */}
         <div>
           <label className="block mb-1 text-sm font-medium text-gray-300">
             Inspection Service
@@ -199,7 +188,6 @@ const QuickInspectionForm = ({ closeForm, onSubmit }) => {
           </select>
         </div>
 
-        {/* Contact */}
         <div>
           <label className="block mb-1 text-sm font-medium text-gray-300">
             Contact
@@ -214,9 +202,7 @@ const QuickInspectionForm = ({ closeForm, onSubmit }) => {
             required
           />
         </div>
-
         {error && <p className="text-red-500 text-sm">{error}</p>}
-
         <div className="flex gap-4 pt-6">
           <button
             type="button"
