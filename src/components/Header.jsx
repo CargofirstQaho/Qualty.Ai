@@ -1,488 +1,123 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; 
-import { Menu, X, LogOut } from 'lucide-react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
 import QualtyLogo from '../assets/QualtyLogo.png';
+import { useSelector } from "react-redux";
+import useFetchUser from '../hooks/useFetchUser';
 
-const Header = ({ user, onLogout }) => { 
+const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
+  useFetchUser()
+  const user = useSelector((state) => state?.user?.user);
+  
+  const handleAuthClick = () => navigate('/login');
 
-  const handleAuthClick = () => {
-    navigate('/login');
-  };
 
-  const headerStyles = {
-    header: {
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      right: 0,
-      zIndex: 1000,
-      background: 'transparent',
-      backdropFilter: 'blur(10px)',
-      padding: '1rem 0',
-      transition: 'all 0.3s ease',
-      fontFamily: 'Jost, sans-serif',
-    },
-    headerContent: {
-      maxWidth: '1400px',
-      margin: '0 auto',
-      padding: '0 2rem',
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      minHeight: '70px',
-      position: 'relative'
-    },
-    logo: {
-      display: 'flex',
-      alignItems: 'center',
-      gap: '1rem',
-      height: '70px',
-      flexShrink: 0,
-      zIndex: 10
-    },
-    logoIcon: {
-      width: '60px',
-      height: '60px',
-      background: 'none',
-      backgroundColor: 'transparent',
-      borderRadius: '10px',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      fontWeight: '900',
-      color: 'white',
-      fontSize: '1.2rem',
-      fontFamily: 'Jost, sans-serif',
-      overflow: 'hidden',
-      flexShrink: 0,
-      border: 'none',
-      boxShadow: 'none'
-    },
-    logoImage: {
-      width: '100%',
-      height: '100%',
-      objectFit: 'contain',
-      display: 'block',
-      backgroundColor: 'transparent'
-    },
-    logoText: {
-      fontSize: '1.8rem',
-      fontWeight: '800',
-      background: 'white',
-      WebkitBackgroundClip: 'text',
-      WebkitTextFillColor: 'transparent',
-      backgroundClip: 'text',
-      fontFamily: 'Jost, sans-serif',
-      letterSpacing: '-0.02em',
-      lineHeight: '1',
-      display: 'flex',
-      alignItems: 'center',
-      margin: '0',
-      whiteSpace: 'nowrap',
-      flexShrink: 0
-    },
-    nav: {
-      display: 'flex',
-      gap: '2rem',
-      alignItems: 'center',
-      flexShrink: 0
-    },
-    navLink: {
-      color: '#FFFFFF',
-      textDecoration: 'none',
-      fontWeight: '700',
-      position: 'relative',
-      transition: 'all 0.3s ease',
-      padding: '1rem 0.75rem',
-      fontSize: '1.1rem',
-      fontFamily:'Jost, sans-serif',
-      whiteSpace: 'nowrap'
-    },
-    ctaButton: {
-      background: 'rgba(255, 255, 255, 0.1)',
-      color: 'white',
-      padding: '0.8rem 1.6rem',
-      borderRadius: '20px',
-      textDecoration: 'none',
-      fontWeight: '700',
-      transition: 'all 0.3s ease',
-      border: '1px solid rgba(255, 255, 255, 0.2)',
-      cursor: 'pointer',
-      backdropFilter: 'blur(10px)',
-      fontSize: '1rem',
-      fontFamily:'Jost, sans-serif',
-      marginLeft: '1rem',
-      whiteSpace: 'nowrap',
-      flexShrink: 0
-    },
-    logoutButton: {
-      background: 'rgba(255, 255, 255, 0.1)',
-      color: 'white',
-      padding: '0.8rem 1.4rem',
-      borderRadius: '20px',
-      border: '1px solid rgba(255, 255, 255, 0.2)',
-      fontWeight: '700',
-      cursor: 'pointer',
-      display: 'flex',
-      alignItems: 'center',
-      gap: '0.5rem',
-      transition: 'all 0.3s ease',
-      backdropFilter: 'blur(10px)',
-      fontSize: '1rem',
-      fontFamily: 'Jost, sans-serif',
-      whiteSpace: 'nowrap',
-      flexShrink: 0
-    },
-    userWelcome: {
-      color: 'rgba(255, 255, 255, 0.8)',
-      fontWeight: '600',
-      marginRight: '1rem',
-      fontSize: '1rem',
-      fontFamily: 'Jost, sans-serif',
-      whiteSpace: 'nowrap',
-      flexShrink: 0,
-      maxWidth: '150px',
-      overflow: 'hidden',
-      textOverflow: 'ellipsis'
-    },
-    userContainer: {
-      display: 'flex',
-      alignItems: 'center',
-      marginLeft: '1rem',
-      flexShrink: 0
-    },
-    mobileMenuButton: {
-      display: 'none',
-      padding: '0.75rem',
-      borderRadius: '8px',
-      backgroundColor: 'rgba(255, 255, 255, 0.1)',
-      color: '#FFFFFF',
-      border: 'none',
-      cursor: 'pointer',
-      transition: 'all 0.3s ease',
-      backdropFilter: 'blur(10px)',
-      flexShrink: 0
-    },
-    mobileMenu: {
-      display: 'none',
-      background: 'rgba(0, 0, 0, 0.95)',
-      backdropFilter: 'blur(20px)',
-      borderRadius: '0 0 20px 20px',
-      boxShadow: '0 10px 25px rgba(0, 0, 0, 0.3)',
-      position: 'absolute',
-      top: '100%',
-      left: 0,
-      right: 0,
-      zIndex: 999
-    },
-    mobileMenuContent: {
-      padding: '1.5rem',
-      display: 'flex',
-      flexDirection: 'column',
-      gap: '1rem'
-    },
-    mobileNavLink: {
-      color: '#FFFFFF',
-      textDecoration: 'none',
-      padding: '1rem 1.25rem',
-      borderRadius: '12px',
-      fontWeight: '600',
-      transition: 'all 0.3s ease',
-      textAlign: 'center',
-      backgroundColor: 'rgba(255, 255, 255, 0.05)',
-      fontSize: '1.1rem',
-      fontFamily:'Jost, sans-serif'
-    },
-    mobileCTAButton: {
-      background: 'rgba(255, 255, 255, 0.1)',
-      color: 'white',
-      padding: '1rem 1.5rem',
-      borderRadius: '20px',
-      border: '1px solid rgba(255, 255, 255, 0.2)',
-      fontWeight: '700',
-      cursor: 'pointer',
-      transition: 'all 0.3s ease',
-      textAlign: 'center',
-      backdropFilter: 'blur(10px)',
-      fontSize: '1.1rem',
-      fontFamily: 'Jost, sans-serif',
-      marginTop: '0.5rem'
-    }
-  };
-
-  const NavLink = ({ href, children, onClick }) => (
-    <a
-      href={href}
-      onClick={onClick}
-      style={headerStyles.navLink}
-      onMouseOver={(e) => {
-        e.target.style.color = '#CCCCCC';
-        e.target.style.transform = 'translateY(-1px)';
-      }}
-      onMouseOut={(e) => {
-        e.target.style.color = '#FFFFFF';
-        e.target.style.transform = 'translateY(0)';
-      }}
-    >
-      {children}
-      <span
-        style={{
-          position: 'absolute',
-          bottom: '-5px',
-          left: '0.75rem',
-          right: '0.75rem',
-          height: '2px',
-          background: 'linear-gradient(135deg, #FFFFFF, #CCCCCC)',
-          transform: 'scaleX(0)',
-          transformOrigin: 'left',
-          transition: 'transform 0.3s ease'
-        }}
-      />
-    </a>
-  );
-
-  // Add responsive styles
-  React.useEffect(() => {
-    if (!document.querySelector('#header-responsive-styles')) {
-      const styles = `
-        @import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800;900&family='Jost, sans-serif':wght@400;500;600;700;800;900&display=swap');
-        
-        @media (max-width: 1200px) {
-          .header-nav {
-            gap: 1rem !important;
-          }
-          .header-nav a {
-            font-size: 0.9rem !important;
-            padding: 0.75rem 0.25rem !important;
-          }
-        }
-        
-        @media (max-width: 1024px) {
-          .header-nav {
-            display: none !important;
-          }
-          .mobile-menu-button {
-            display: block !important;
-          }
-        }
-        
-        @media (max-width: 768px) {
-          .header-content {
-            padding: 0 1rem !important;
-          }
-          .user-welcome {
-            display: none !important;
-          }
-          .logo-text {
-            font-size: 1.2rem !important;
-          }
-          .logo-icon {
-            width: 45px !important;
-            height: 45px !important;
-          }
-        }
-        
-        @media (max-width: 480px) {
-          .header-content {
-            padding: 0 0.75rem !important;
-          }
-          .logo-text {
-            display: none !important;
-          }
-        }
-        
-        .mobile-menu.open {
-          display: block !important;
-        }
-        
-        .nav-link:hover span {
-          transform: scaleX(1) !important;
-        }
-      `;
-      const style = document.createElement('style');
-      style.id = 'header-responsive-styles';
-      style.textContent = styles;
-      document.head.appendChild(style);
-    }
-  }, []);
+  const navLinks = [
+    { label: 'Home', href: '#home' },
+    { label: 'Services', href: '#services' },
+    { label: 'About', href: '#about' },
+    { label: 'Contact', href: '#contact' },
+  ];
 
   return (
-    <header style={headerStyles.header}>
-      <div style={headerStyles.headerContent} className="header-content">
-        <div style={headerStyles.logo} className="header-logo">
-          <div style={headerStyles.logoIcon} className="logo-icon">
-            <img src={QualtyLogo} alt="Qualty.AI Logo" style={headerStyles.logoImage} />
-          </div>
-          <span style={headerStyles.logoText} className="logo-text">Qualty.AI</span>
+    <header className="fixed top-0 left-0 w-full z-50 bg-gradient-to-r from-gray-950 via-gray-900 to-gray-950 text-white shadow-lg backdrop-blur-md transition-all duration-300">
+      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+        <div className="flex items-center gap-2 cursor-pointer transition-transform hover:scale-105">
+          <img src={QualtyLogo} alt="Qualty.AI Logo" className="h-9 w-9 rounded-full shadow-md" />
+          <span className="text-2xl font-extrabold tracking-wide text-white bg-clip-text bg-gradient-to-r from-blue-700 to-blue-500">
+            Qualty.AI
+          </span>
         </div>
 
-        <nav style={headerStyles.nav} className="header-nav">
-          <NavLink href="#home">Home</NavLink>
-          <NavLink href="#services">Services</NavLink>
-          <NavLink href="#about">About</NavLink>
-          <NavLink href="#contact">Contact</NavLink>
+        <nav className="hidden md:flex gap-8 items-center">
+          {navLinks.map(({ label, href }) => (
+            <a
+              key={label}
+              href={href}
+              className="relative text-lg font-medium text-white hover:text-blue-700 transition duration-300"
+            >
+              {label}
+              <span className="absolute bottom-[-4px] left-0 w-full h-[2px] bg-gradient-to-r from-blue-700 to-blue-500 scale-x-0 hover:scale-x-100 origin-left transition-transform duration-300" />
+            </a>
+          ))}
 
           {user ? (
-            <div style={headerStyles.userContainer}>
-              <span style={headerStyles.userWelcome} className="user-welcome">
-                Welcome, {user.name}
-              </span>
-              <button
-                onClick={onLogout}
-                style={headerStyles.logoutButton}
-                onMouseOver={(e) => {
-                  e.target.style.transform = 'translateY(-2px)';
-                  e.target.style.background = 'rgba(255, 255, 255, 0.2)';
-                }}
-                onMouseOut={(e) => {
-                  e.target.style.transform = 'translateY(0)';
-                  e.target.style.background = 'rgba(255, 255, 255, 0.1)';
-                }}
-              >
-                <LogOut size={16} />
-                Logout
-              </button>
-            </div>
+            <button
+              onClick={() => navigate(`/${user.role}/dashboard`)}
+              className="px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-600 hover:from-blue-800 hover:to-blue-500 text-white rounded-md text-sm font-semibold shadow-md cursor-pointer transition-transform hover:scale-105"
+            >
+              Dashboard
+            </button>
           ) : (
             <button
-              onClick={handleAuthClick} 
-              style={headerStyles.ctaButton}
-              onMouseOver={(e) => {
-                e.target.style.transform = 'translateY(-2px)';
-                e.target.style.background = 'rgba(255, 255, 255, 0.2)';
-              }}
-              onMouseOut={(e) => {
-                e.target.style.transform = 'translateY(0)';
-                e.target.style.background = 'rgba(255, 255, 255, 0.1)';
-              }}
+              onClick={handleAuthClick}
+              className="px-4 py-2 bg-gradient-to-r from-blue-900 to-blue-800 hover:from-blue-800 hover:to-blue-900 text-white rounded-md text-lg cursor-pointer font-semibold shadow-md transition-transform hover:scale-105"
             >
-              Login/SignUp
+              Login
             </button>
           )}
         </nav>
 
         <button
-          style={headerStyles.mobileMenuButton}
-          className="mobile-menu-button"
+          className="md:hidden p-2 rounded-md bg-gray-800 hover:bg-gray-700 transition-all"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          onMouseOver={(e) => {
-            e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
-          }}
-          onMouseOut={(e) => {
-            e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
-          }}
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      <div 
-        style={{
-          ...headerStyles.mobileMenu,
-          display: isMenuOpen ? 'block' : 'none'
-        }}
-        className={`mobile-menu ${isMenuOpen ? 'open' : ''}`}
+      <div
+        className={`md:hidden bg-gray-900 transition-all duration-500 ease-in-out overflow-hidden ${
+          isMenuOpen ? 'max-h-[500px] py-4 px-6 opacity-100' : 'max-h-0 opacity-0'
+        }`}
       >
-        <div style={headerStyles.mobileMenuContent}>
-          <a
-            href="#home"
-            style={headerStyles.mobileNavLink}
-            onClick={() => setIsMenuOpen(false)}
-            onMouseOver={(e) => {
-              e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
-              e.target.style.color = '#CCCCCC';
-            }}
-            onMouseOut={(e) => {
-              e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
-              e.target.style.color = '#FFFFFF';
-            }}
-          >
-            Home
-          </a>
-          <a
-            href="#services"
-            style={headerStyles.mobileNavLink}
-            onClick={() => setIsMenuOpen(false)}
-            onMouseOver={(e) => {
-              e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
-              e.target.style.color = '#CCCCCC';
-            }}
-            onMouseOut={(e) => {
-              e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
-              e.target.style.color = '#FFFFFF';
-            }}
-          >
-            Services
-          </a>
-          <a
-            href="#about"
-            style={headerStyles.mobileNavLink}
-            onClick={() => setIsMenuOpen(false)}
-            onMouseOver={(e) => {
-              e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
-              e.target.style.color = '#CCCCCC';
-            }}
-            onMouseOut={(e) => {
-              e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
-              e.target.style.color = '#FFFFFF';
-            }}
-          >
-            About
-          </a>
-          <a
-            href="#contact"
-            style={headerStyles.mobileNavLink}
-            onClick={() => setIsMenuOpen(false)}
-            onMouseOver={(e) => {
-              e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
-              e.target.style.color = '#CCCCCC';
-            }}
-            onMouseOut={(e) => {
-              e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.05)';
-              e.target.style.color = '#FFFFFF';
-            }}
-          >
-            Contact
-          </a>
-          
+        <div className="flex flex-col gap-4 animate-fade-in">
+          {navLinks.map(({ label, href }) => (
+            <a
+              key={label}
+              href={href}
+              onClick={() => setIsMenuOpen(false)}
+              className="text-sm text-white hover:text-blue-700 transition-colors"
+            >
+              {label}
+            </a>
+          ))}
+
           {user ? (
             <button
               onClick={() => {
-                onLogout();
+                navigate(`/${user.role}/dashboard`);
                 setIsMenuOpen(false);
               }}
-              style={{
-                ...headerStyles.logoutButton,
-                width: '100%',
-                justifyContent: 'center'
-              }}
+              className="px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-600 hover:from-blue-800 hover:to-blue-500 rounded-md text-sm font-medium text-white shadow-md transition-transform hover:scale-105"
             >
-              <LogOut size={16} />
-              Logout
+              Dashboard
             </button>
           ) : (
             <button
               onClick={() => {
-                handleAuthClick(); 
+                handleAuthClick();
                 setIsMenuOpen(false);
               }}
-              style={headerStyles.mobileCTAButton}
-              onMouseOver={(e) => {
-                e.target.style.transform = 'translateY(-2px)';
-                e.target.style.background = 'rgba(255, 255, 255, 0.2)';
-              }}
-              onMouseOut={(e) => {
-                e.target.style.transform = 'translateY(0)';
-                e.target.style.background = 'rgba(255, 255, 255, 0.1)';
-              }}
+              className="px-4 py-2 bg-gradient-to-r from-blue-900 to-blue-700 hover:from-blue-800 hover:to-blue-600 rounded-md text-sm font-medium text-white shadow-md transition-transform hover:scale-105"
             >
-              Login/SignUp
+              Login
             </button>
           )}
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes fade-in {
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+          animation: fade-in 0.4s ease-out forwards;
+        }
+      `}</style>
     </header>
   );
 };

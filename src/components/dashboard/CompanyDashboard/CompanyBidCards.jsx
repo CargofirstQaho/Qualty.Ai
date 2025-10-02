@@ -37,12 +37,11 @@ const CompanyBidCard = ({ bid }) => {
       const data = await response.json();
       if (data.success) {
         alert("Bid placed successfully");
-        ("Bid response:", data.bid);
       } else {
         alert(data.message || "Failed to place bid");
       }
     } catch (err) {
-      ("Bid error:", err);
+      console.error("Bid error:", err);
       alert("Error placing bid");
     }
   };

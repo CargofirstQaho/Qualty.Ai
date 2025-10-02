@@ -20,16 +20,17 @@ const useFetchUser = () => {
         if (data.userInfo) {
           dispatch(addUser(data.userInfo))
         } else {
-          navigate("/login");
+          navigate("/");
         }
       } catch (error) {
-        ("Error fetching user:", error);
+        console.error("Error fetching user:", error);
         navigate("/login");
       }
     };
 
     fetchUser();
   }, [navigate]);
+  
 };
 
 export default useFetchUser;

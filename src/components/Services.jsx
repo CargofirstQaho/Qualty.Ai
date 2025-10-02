@@ -581,7 +581,6 @@ const Services = () => {
       observer.observe(sectionRef.current);
     }
 
-    // For mobile, set visible immediately to avoid animation issues
     if (isMobile) {
       setIsVisible(true);
     }

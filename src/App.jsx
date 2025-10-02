@@ -41,6 +41,8 @@ import CompanyAccount from './components/dashboard/CompanyDashboard/CompanyAccou
 import CompanyHistory from './components/dashboard/CompanyDashboard/CompanyHistory'
 import CompanyPayment from './components/dashboard/CompanyDashboard/CompanyPayment'
 import CustomerEnquiryDetailPage from "./components/dashboard/CustomerDashboard/CustomerEnquiryDetailPage";
+import QuickRequestsPage from "./components/dashboard/CustomerDashboard/QuickRequestPage";
+import QuickRequestDetailPage from "./components/dashboard/CustomerDashboard/QuickRequestDetailPage";
 
 
 function App() {
@@ -69,6 +71,9 @@ function App() {
           <Route path="enquiry" element={<RaiseEnquiry />} />
           <Route path="inspection/:id" element={<InspectionDetailsPage />} />
           <Route path="enquiry/:id" element={<CustomerEnquiryDetailPage />} />
+           <Route path="quick-requests" element={<QuickRequestsPage />} />
+           <Route path="quick-requests/:id" element={<QuickRequestDetailPage />} />
+
         </Route>
 
         <Route path="/inspector" element={ <InspectorLayout/> }>

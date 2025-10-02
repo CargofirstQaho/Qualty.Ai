@@ -13,7 +13,6 @@ const InspectorHistory = () => {
         });
         const data = await res.json();
         console.log(data);
-        
         if (data.success) {
           setBids(data.bids);
         } else {

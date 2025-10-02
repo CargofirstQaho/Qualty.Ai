@@ -4,6 +4,7 @@ import enquiryReducer from "./slice/enquirySlice"
 import BidPlacedReducer from "./slice/bidSlice"
 import enquiryBidReducer from "./slice/enquiryBidSlice"
 import customerEnquiryReducer from "./slice/customerEnquirySlice"
+import locationReducer from "./slice/locationSlice"
 
 
 const appStore = configureStore({
@@ -12,7 +13,8 @@ const appStore = configureStore({
         enquiry:enquiryReducer,
         bid:BidPlacedReducer,
         enquiryBid:enquiryBidReducer,
-        customerEnquiry:customerEnquiryReducer
+        customerEnquiry:customerEnquiryReducer,
+        location:locationReducer
     }
 })
 

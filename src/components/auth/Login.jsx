@@ -1,6 +1,5 @@
-
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { BASE_URL } from "../../utils/constants";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
@@ -10,13 +9,14 @@ const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    role: ""
+    role: "",
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const location = useLocation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,34 +25,37 @@ const Login = () => {
 
     try {
       const response = await fetch(`${BASE_URL}/auth/signin`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
-        credentials: 'include',
+        credentials: "include",
       });
 
       const result = await response.json();
       if (!result.success) {
         setError(result.errors?.[0]?.msg || result.message);
       } else {
-        dispatch(addUser(result.user))
+        dispatch(addUser(result.user));
         setError("");
-        toast.success('Login successful!');
+        toast.success("Login successful!");
         setTimeout(() => {
-          navigate(`/${result.user.role}/dashboard`);
+          if (location.state?.redirectTo) {
+            navigate(location.state.redirectTo, {
+              state: location.state.payload,
+            });
+          } else {
+            navigate(`/${result.user.role}/dashboard`);
+          }
         }, 500);
       }
-
-
     } catch (err) {
-      setError('An error occurred. Please try again.');
+      setError("An error occurred. Please try again.");
     } finally {
       setLoading(false);
     }
   };
-
 
   const handleChange = (e) => {
     setFormData({
@@ -96,9 +99,10 @@ const Login = () => {
         <div className="bg-gray-800/50 backdrop-blur-xl rounded-2xl p-8 border border-gray-700/50 shadow-2xl">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-4">
-
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">Role</label>
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                  Role
+                </label>
                 <select
                   name="role"
                   value={formData.role}
@@ -111,7 +115,6 @@ const Login = () => {
                   <option value="inspector">Inspector</option>
                 </select>
               </div>
-
 
               <div>
                 <label

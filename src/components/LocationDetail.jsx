@@ -1,23 +1,32 @@
-import React from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
-import { useUser } from '../context/userContext';
+import { useParams, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const LocationDetail = () => {
   const { regionName } = useParams();
   const decodedRegion = decodeURIComponent(regionName);
   const navigate = useNavigate();
-  const { location } = useUser();
-
-  const regionData = location?.data?.[decodedRegion];
+  const user = useSelector((state) => state?.user?.user);
+  const locationData = useSelector((state) => state.location?.data);
+  const regionData = locationData?.[decodedRegion];
+  
 
   const handleConfirmClick = (payload) => {
-    navigate("/quickInspection/form")
+    if (user) {
+      navigate("/quickInspection/form", { state: payload });
+    } else {
+      navigate("/login", {
+        state: { redirectTo: "/quickInspection/form", payload },
+      });
+    }
   };
 
   if (!regionData) {
     return (
       <div className="flex items-center justify-center h-screen bg-gray-950">
-        <p className="text-lg text-gray-400">No data found for <span className="text-white font-medium">{decodedRegion}</span></p>
+        <p className="text-lg text-gray-400">
+          No data found for{" "}
+          <span className="text-white font-medium">{decodedRegion}</span>
+        </p>
       </div>
     );
   }
@@ -43,16 +52,20 @@ const LocationDetail = () => {
               className="flex justify-between items-center bg-gray-900 border border-gray-700 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow"
             >
               <div>
-                <h3 className="text-lg font-semibold text-gray-100">{loc.location}</h3>
+                <h3 className="text-lg font-semibold text-gray-100">
+                  {loc.location}
+                </h3>
                 <p className="text-sm text-gray-400">Estimated Rate</p>
-                <p className="text-xl font-light text-green-400">₹{loc.price}</p>
+                <p className="text-xl font-light text-green-400">
+                  ₹{loc.price}
+                </p>
               </div>
               <button
                 onClick={() =>
                   handleConfirmClick({
                     location: loc.location,
                     rate: loc.price,
-                    type: 'domestic',
+                    type: "domestic",
                   })
                 }
                 className="bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-md text-sm font-medium transition-colors cursor-pointer"
